@@ -5,7 +5,8 @@ import java.util.Scanner;  // Import the Scanner class
 
 public class Main {
 
-/*
+/*  function questions and answers
+
     public static boolean lancement_Jeu(){
 
         class MyClass {
@@ -22,7 +23,7 @@ public class Main {
 
 
 
-    }
+// print the table
 
     public static void FonctionAffichageX(char tableau[][]) {
 
