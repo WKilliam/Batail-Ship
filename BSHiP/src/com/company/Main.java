@@ -72,8 +72,11 @@ public class Main {
 }
 
 
+<<<<<<< refs/remotes/origin/master
         
 
 
 
+=======
+>>>>>>> stade plus propre
 
