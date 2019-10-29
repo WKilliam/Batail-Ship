@@ -79,45 +79,4 @@ public class Main {
 }
 
 
-        /*FonctionAffichageX();*
-
-
-        
-        /*
-        class Fenetre extends JFrame {
-            public Fenetre() {
-
-                JFrame fenetre = new JFrame();
-
-                //Définit un titre pour notre fenêtre
-                fenetre.setTitle("Bataille Navale");
-
-                //Définit sa taille : 500 pixels de large et 500 pixels de haut
-                fenetre.setSize(500, 500);
-
-                //Nous demandons maintenant à notre objet de se positionner au centre
-                fenetre.setLocationRelativeTo(null);
-
-                //Termine le processus lorsqu'on clique sur la croix rouge
-                fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-                //Et enfin, la rendre visible
-                fenetre.setVisible(true);
-
-                //Instanciation d'un objet JPanel
-                JPanel pan = new JPanel();
-
-                //Définition de sa couleur de fond
-                pan.setBackground(Color.ORANGE);
-
-                //On prévient notre JFrame que notre JPanel sera son content pane
-                this.setContentPane(pan);
-                this.setVisible(true);
-
-
-            }
-        }
-*/
-
-
 
