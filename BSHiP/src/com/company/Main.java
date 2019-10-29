@@ -1,10 +1,11 @@
 package com.company;
 import java.util.Scanner;  // Import the Scanner class
 
+import static java.lang.Math.random;
 
 
 public class Main {
-
+//TEST COMMIT
 /*  function questions and answers
 
     public static boolean lancement_Jeu(){
@@ -31,7 +32,36 @@ public class Main {
                 tableau[row][col] = '~';
             }
 
-        }   }
+        }
+
+
+        // create ship
+        public static void CreateShip(int N, char tab [][]){
+
+            //horizontal or vertical
+
+            int HorV = int ((Math.random())*10);
+
+            //
+            if (HorV == 0) {
+
+                int row = int (Math.random())*10;
+                int col = int (Math.random()*(10-N);
+            }
+            else
+                {
+                int row = int (Math.random())*(10-N);
+                int col = int (Math.random()*10;
+            }
+
+
+
+
+        }
+
+
+
+    }
 
 
 // print the table
