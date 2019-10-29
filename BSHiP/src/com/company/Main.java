@@ -5,7 +5,7 @@ import static java.lang.Math.random;
 
 
 public class Main {
-//TEST COMMIT
+
 /*  function questions and answers
 
     public static boolean lancement_Jeu(){
@@ -20,13 +20,13 @@ public class Main {
             }
         }*/
 
-// init
+    // init
     public static void FonctionInit(char tableau[][]) {
 
         int n = tableau.length;
         int m = tableau[0].length;
         int row;
-        for (row=0;row<n;row=row+1) {
+        for (row = 0; row < n; row = row + 1) {
             int col;
             for (col = 0; col < m; col = col + 1) {
                 tableau[row][col] = '~';
@@ -34,34 +34,70 @@ public class Main {
 
         }
 
+        CreateShip (5,tableau);
+        CreateShip (4,tableau);
+        CreateShip (3,tableau);
+        CreateShip (3,tableau);
+        CreateShip (2,tableau);
 
-        // create ship
-        public static void CreateShip(int N, char tab [][]){
+    }
 
-            //horizontal or vertical
 
-            int HorV = int ((Math.random())*10);
+    // function GetRandom
+    public static int GetRandom(int N) {
+        int Random_local = (int) (Math.random() * (N));
+        return Random_local;
+    }
 
-            //
-            if (HorV == 0) {
 
-                int row = int (Math.random())*10;
-                int col = int (Math.random()*(10-N);
+    // create ship
+    public static void CreateShip(int N, char tab[][]) {
+
+    do {
+
+        // alea
+        //horizontal or vertical
+        int col;
+        int row;
+        boolean isShipPossible = true;
+
+        int HorV = GetRandom(10);
+        if (HorV == 0) {
+
+            row = GetRandom(10);
+            col = GetRandom(10 - N);
+        } else {
+            row = GetRandom(10 - N);
+            col = GetRandom(10);
+        }
+
+        int taille;
+        for (taille = 0; taille <= N; taille = taille + 1) {
+
+            if ((tab[row][col + taille] == '#')||(tab [row + taille][col] = '#'){
+                isShipPossible = false;
             }
-            else
-                {
-                int row = int (Math.random())*(10-N);
-                int col = int (Math.random()*10;
-            }
-
-
-
 
         }
 
+        if (isShipPossible == true) {
+            // write
+            // display condition about the presence of a #
 
+            for (taille = 0; taille <= N; taille = taille + 1) {
 
+                if (HorV == 0) {
+                    tab[row][col + taille] = '#';
+                } else {
+                    tab[row + taille][col] = '#';
+                }
+            }
+        }
     }
+    while(isShipPossible == false);
+    }
+
+
 
 
 // print the table
@@ -97,6 +133,7 @@ public class Main {
 
         FonctionInit(tab1);
         FonctionAffichageX(tab1);
+
 
     }
 }
