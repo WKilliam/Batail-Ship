@@ -72,6 +72,7 @@ public class Main {
 }
 
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
         
 
@@ -79,4 +80,6 @@ public class Main {
 
 =======
 >>>>>>> stade plus propre
+=======
+>>>>>>> teddy1
 
