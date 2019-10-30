@@ -212,15 +212,17 @@ public class Main {
 
 
 
-       char tab1[][]= new char [10][10];
+       char tabPlayer[][]= new char [10][10];
+       char tabCpu[][]= new char [10][10];
 
-
-        FonctionInit(tab1);
-
+        FonctionInit(tabPlayer);
+        FonctionInit(tabCpu);
         while(true){
 
-            FonctionAffichageX(tab1);
-            playerTurn(tab1);
+            FonctionAffichageX(tabCpu);
+            playerTurn(tabCpu);
+            FonctionAffichageX(tabPlayer);
+            playerTurn(tabPlayer);
         }
 
     }
