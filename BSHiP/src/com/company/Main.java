@@ -6,19 +6,7 @@ import static java.lang.Math.random;
 
 public class Main {
 
-/*  function questions and answers
 
-    public static boolean lancement_Jeu(){
-
-        class MyClass {
-            public static void main(String[] args) {
-                Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-                System.out.println("Enter username");
-
-                String userName = myObj.nextLine();  // Read user input
-                System.out.println("Username is: " + userName);  // Output user input
-            }
-        }*/
 
     // init
     public static void FonctionInit(char tableau1[][]) {
@@ -41,7 +29,6 @@ public class Main {
         CreateShip(2, tableau1);
 
     }
-
 
     // function GetRandom
     public static int GetRandom(int N) {
@@ -74,6 +61,7 @@ public class Main {
             }
 
             // check possible
+
             isShipPossible = true;
 
             int size;
@@ -92,23 +80,6 @@ public class Main {
 
             }
 
-            /*if (tab[row][col +size] =='#'){
-                isShipPossible = false;
-            }
-            if (tab [row + size][col] == '#'){
-                isShipPossible = false;
-            }
-        }*/
-
-            /*
-                if ((tab[row][col + size] == '#') || (tab[row + size][col] == '#'));
-
-
-                    isShipPossible = false;
-                }
-            */
-
-
             if (isShipPossible == true) {
                 // write
                 // display condition about the presence of a #
@@ -124,12 +95,7 @@ public class Main {
             }
         } while (isShipPossible == false);
     }
-
-
-
-
-
-
+    
 // print the table
 
     public static void FonctionAffichageX(char tableau[][]) {
