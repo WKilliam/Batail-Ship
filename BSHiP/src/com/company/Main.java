@@ -1,8 +1,6 @@
 package com.company;
 import java.util.Scanner;  // Import the Scanner class
 
-import static java.lang.Math.random;
-
 
 public class Main {
 
@@ -95,7 +93,7 @@ public class Main {
             }
         } while (isShipPossible == false);
     }
-    
+
 // print the table
 
     public static void FonctionAffichageX(char tableau[][]) {
@@ -113,7 +111,7 @@ public class Main {
             line = line + (y+1) + "| ";
 
             for (x=0;x<=9;x=x+1){
-                line=line+tableau[x][y]+" ";
+                line=line+tableau[y][x]+" ";
             }
             line = line + "|";
             System.out.println(line);
@@ -121,16 +119,92 @@ public class Main {
 
     }
 
+        // function that takes a string as a parameter and checks if the first character is between A and J
+        // if it is not the case, it returns -1
+            static int getInputColIndex(String s){
+            if(s.length() > 0){
+                char first = s.toLowerCase().charAt(0);
+                    if(first >= 'a' && first <= 'j') {
+                     return (first-'a');
+            }
+        }
+                return -1;
+    }
+    // function that takes a string as a parameter and checks if second and third characters are between '1' and '10'
+    // if it is not the case, it returns -1
+        static int getInputRowIndex(String s){
+        if(s.length() > 1){
+            char second = s.toLowerCase().charAt(1);
+                if(second >= '1' && second <= '9') {
+                    if(s.length() > 2) {
+                        char third = s.toLowerCase().charAt(2);
+                            if (third == '0') {
+                                return Integer.parseInt(s.substring(1, 3))-1;
+                    }
+                }
+                else{
+                    return (second-'0'-1);
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static void shoot(int colonne, int ligne, char tab[][]){
+        if (tab[ligne][colonne] == '#'){
+            // hit the ship
+            tab [ligne][colonne] = 'X';
+        }
+        if (tab[ligne][colonne] == '~'){
+            // hit the ship
+            tab [ligne][colonne] = 'Y';
+        }
+    }
+
+    public static void playerTurn(char tab[][]){
+
+        int colIdx;
+        int rowIdx;
+        do {
+            Scanner sc = new Scanner(System.in);
+            // Get input from user
+            System.out.println("Entrez des coordonnées : ");
+            String input = sc.next();
+            // get column index
+            colIdx = getInputColIndex(input);
+            // get row index
+            rowIdx = getInputRowIndex(input);
+
+            if (colIdx != -1 && rowIdx != -1) {
+                // Here i got valid position for ROW and COLUMN indexes
+                // here colIdx and rowIdx contains valid values
+                // call the shoot function
+                shoot(colIdx, rowIdx, tab);
+
+            } else {
+                System.out.println("erreur de saisie");
+            }
+        }while( colIdx==-1 || rowIdx == -1);
+
+
+    }
+
+
 
     public static void main(String[] args) {
 
 
-        char tab1[][]= new char [10][10];
+
+       char tab1[][]= new char [10][10];
 
 
         FonctionInit(tab1);
-        FonctionAffichageX(tab1);
 
+        while(true){
+
+            FonctionAffichageX(tab1);
+            playerTurn(tab1);
+        }
 
     }
 }
