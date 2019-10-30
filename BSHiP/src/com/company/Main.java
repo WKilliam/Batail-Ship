@@ -201,12 +201,14 @@ public class Main {
 
 
     }
+    //creation IA
+    public static void IA_cpu (int random,)
 
 
 
     public static void main(String[] args) {
 
-        System.out.println("welcome to my (bo(a)");
+        System.out.println("welcome to my (bo(a)t");
 
 
 
