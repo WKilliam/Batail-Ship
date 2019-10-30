@@ -21,24 +21,24 @@ public class Main {
         }*/
 
     // init
-    public static void FonctionInit(char tableau[][]) {
+    public static void FonctionInit(char tableau1[][]) {
 
-        int n = tableau.length;
-        int m = tableau[0].length;
+        int n = tableau1.length;
+        int m = tableau1[0].length;
         int row;
         for (row = 0; row < n; row = row + 1) {
             int col;
             for (col = 0; col < m; col = col + 1) {
-                tableau[row][col] = '~';
+                tableau1[row][col] = '~';
             }
 
         }
 
-        CreateShip (5,tableau);
-        CreateShip (4,tableau);
-        CreateShip (3,tableau);
-        CreateShip (3,tableau);
-        CreateShip (2,tableau);
+        CreateShip(5, tableau1);
+        CreateShip(4, tableau1);
+        CreateShip(3, tableau1);
+        CreateShip(3, tableau1);
+        CreateShip(2, tableau1);
 
     }
 
@@ -53,49 +53,79 @@ public class Main {
     // create ship
     public static void CreateShip(int N, char tab[][]) {
 
-    do {
+        boolean isShipPossible;
 
-        // alea
-        //horizontal or vertical
-        int col;
-        int row;
-        boolean isShipPossible = true;
+        do {
 
-        int HorV = GetRandom(10);
-        if (HorV == 0) {
+            // alea
+            //horizontal or vertical
+            int col;
+            int row;
 
-            row = GetRandom(10);
-            col = GetRandom(10 - N);
-        } else {
-            row = GetRandom(10 - N);
-            col = GetRandom(10);
-        }
 
-        int taille;
-        for (taille = 0; taille <= N; taille = taille + 1) {
+            int HorV = GetRandom(2);
+            if (HorV == 0) {
 
-            if ((tab[row][col + taille] == '#')||(tab [row + taille][col] = '#'){
+                row = GetRandom(10);
+                col = GetRandom(10 - (N-1));
+            } else {
+                row = GetRandom(10 - (N-1));
+                col = GetRandom(10);
+            }
+
+            // check possible
+            isShipPossible = true;
+
+            int size;
+            for (size = 0; size < N; size = size + 1) {
+
+                if (HorV == 0) // horizontal
+                {
+                    if (tab[row][col + size] == '#') {
+                        isShipPossible = false;
+                    }
+                } else { // vertical
+                    if (tab[row + size][col] == '#') {
+                        isShipPossible = false;
+                    }
+                }
+
+            }
+
+            /*if (tab[row][col +size] =='#'){
                 isShipPossible = false;
             }
+            if (tab [row + size][col] == '#'){
+                isShipPossible = false;
+            }
+        }*/
 
-        }
+            /*
+                if ((tab[row][col + size] == '#') || (tab[row + size][col] == '#'));
 
-        if (isShipPossible == true) {
-            // write
-            // display condition about the presence of a #
 
-            for (taille = 0; taille <= N; taille = taille + 1) {
+                    isShipPossible = false;
+                }
+            */
 
-                if (HorV == 0) {
-                    tab[row][col + taille] = '#';
-                } else {
-                    tab[row + taille][col] = '#';
+
+            if (isShipPossible == true) {
+                // write
+                // display condition about the presence of a #
+
+                for (size = 0; size < N; size = size + 1) {
+
+                    if (HorV == 0) {
+                        tab[row][col + size] = '#';
+                    } else {
+                        tab[row + size][col] = '#';
+                    }
                 }
             }
-        }
+        } while (isShipPossible == false);
     }
-    while(isShipPossible == false);
-    }
+
+
 
 
 
@@ -130,6 +160,7 @@ public class Main {
 
 
         char tab1[][]= new char [10][10];
+
 
         FonctionInit(tab1);
         FonctionAffichageX(tab1);
