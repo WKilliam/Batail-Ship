@@ -6,6 +6,7 @@ public class Main {
 
 
 
+
     // init
     public static void FonctionInit(char tableau1[][]) {
 
@@ -150,15 +151,27 @@ public class Main {
         return -1;
     }
 
-    public static void shoot(int colonne, int ligne, char tab[][]){
-        if (tab[ligne][colonne] == '#'){
-            // hit the ship
-            tab [ligne][colonne] = 'X';
-        }
-        if (tab[ligne][colonne] == '~'){
-            // hit the ship
-            tab [ligne][colonne] = 'Y';
-        }
+    public static boolean shoot(int colonne, int ligne, char tab[][]) {
+
+        boolean shipDestroyed = false;
+
+
+            if (tab[ligne][colonne] == '#') {
+                // hit the ship
+                tab[ligne][colonne] = 'X';
+                System.out.println("touched ! well done !!!  hiiiiiii haaaaaaa");
+                shipDestroyed = true;
+            }
+            else if (tab[ligne][colonne] == '~') {
+                // hit the ship
+                tab[ligne][colonne] = 'Y';
+                System.out.println("holy sheet...");
+            }
+            else{
+                System.out.println("Already played here : noob ");
+            }
+
+            return shipDestroyed;
     }
 
     public static void playerTurn(char tab[][]){
@@ -192,6 +205,10 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+        System.out.println("welcome to my (bo(a)");
+
+
 
 
 
