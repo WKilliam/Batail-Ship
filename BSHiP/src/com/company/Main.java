@@ -36,6 +36,7 @@ public class Main {
     }
 
 
+
     // create ship
     public static void CreateShip(int N, char tab[][]) {
 
@@ -192,19 +193,33 @@ public class Main {
                 // Here i got valid position for ROW and COLUMN indexes
                 // here colIdx and rowIdx contains valid values
                 // call the shoot function
+
+                System.out.print("PLAYER : ");
                 shoot(colIdx, rowIdx, tab);
 
             } else {
                 System.out.println("erreur de saisie");
             }
         }while( colIdx==-1 || rowIdx == -1);
+    }
+    //
+    
 
+
+
+
+
+
+    // Tour de l'ordinateur
+
+    public static void CPU_Turn(char tab[][]){
+
+        int Random_CPU_col = GetRandom(10);
+        int Random_CPU_row = GetRandom(10);
+        System.out.print("CPU : ");
+        shoot(Random_CPU_row,Random_CPU_col,tab);
 
     }
-    //creation IA
-    public static void IA_cpu (int random,)
-
-
 
     public static void main(String[] args) {
 
@@ -219,12 +234,22 @@ public class Main {
 
         FonctionInit(tabPlayer);
         FonctionInit(tabCpu);
+
         while(true){
 
+            System.out.println("----------------------------------------------");
+
             FonctionAffichageX(tabCpu);
-            playerTurn(tabCpu);
+
+            System.out.println("----------------------------------------------");
+
             FonctionAffichageX(tabPlayer);
-            playerTurn(tabPlayer);
+
+            System.out.println("----------------------------------------------");
+            playerTurn(tabCpu);
+
+            CPU_Turn(tabPlayer);
+
         }
 
     }
