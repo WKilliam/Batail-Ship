@@ -5,8 +5,6 @@ import java.util.Scanner;  // Import the Scanner class
 public class Main {
 
 
-
-
     // init
     public static void FonctionInit(char tableau1[][]) {
 
@@ -18,52 +16,36 @@ public class Main {
             for (col = 0; col < m; col = col + 1) {
                 tableau1[row][col] = '~';
             }
-
         }
-
         CreateShip(5, tableau1);
         CreateShip(4, tableau1);
         CreateShip(3, tableau1);
         CreateShip(3, tableau1);
         CreateShip(2, tableau1);
-
     }
-
     // function GetRandom
     public static int GetRandom(int N) {
         int Random_local = (int) (Math.random() * (N));
         return Random_local;
     }
-
-
-
     // create ship
     public static void CreateShip(int N, char tab[][]) {
-
         boolean isShipPossible;
-
         do {
-
             // alea
             //horizontal or vertical
             int col;
             int row;
-
-
             int HorV = GetRandom(2);
             if (HorV == 0) {
-
                 row = GetRandom(10);
-                col = GetRandom(10 - (N-1));
+                col = GetRandom(10 - (N - 1));
             } else {
-                row = GetRandom(10 - (N-1));
+                row = GetRandom(10 - (N - 1));
                 col = GetRandom(10);
             }
-
             // check possible
-
             isShipPossible = true;
-
             int size;
             for (size = 0; size < N; size = size + 1) {
 
@@ -77,9 +59,7 @@ public class Main {
                         isShipPossible = false;
                     }
                 }
-
             }
-
             if (isShipPossible == true) {
                 // write
                 // display condition about the presence of a #
@@ -104,48 +84,47 @@ public class Main {
         int y;
         System.out.println("    A B C D E F G H I J");
 
-        for (y=0;y<=9;y=y+1){
-            String line ="";
+        for (y = 0; y <= 9; y = y + 1) {
+            String line = "";
             int x;
-            if(y<=8){
-                line = line +" ";
+            if (y <= 8) {
+                line = line + " ";
             }
-            line = line + (y+1) + "| ";
+            line = line + (y + 1) + "| ";
 
-            for (x=0;x<=9;x=x+1){
-                line=line+tableau[y][x]+" ";
+            for (x = 0; x <= 9; x = x + 1) {
+                line = line + tableau[y][x] + " ";
             }
             line = line + "|";
             System.out.println(line);
         }
-
     }
 
-        // function that takes a string as a parameter and checks if the first character is between A and J
-        // if it is not the case, it returns -1
-            static int getInputColIndex(String s){
-            if(s.length() > 0){
-                char first = s.toLowerCase().charAt(0);
-                    if(first >= 'a' && first <= 'j') {
-                     return (first-'a');
+    // function that takes a string as a parameter and checks if the first character is between A and J
+    // if it is not the case, it returns -1
+    static int getInputColIndex(String s) {
+        if (s.length() > 0) {
+            char first = s.toLowerCase().charAt(0);
+            if (first >= 'a' && first <= 'j') {
+                return (first - 'a');
             }
         }
-                return -1;
+        return -1;
     }
+
     // function that takes a string as a parameter and checks if second and third characters are between '1' and '10'
     // if it is not the case, it returns -1
-        static int getInputRowIndex(String s){
-        if(s.length() > 1){
+    static int getInputRowIndex(String s) {
+        if (s.length() > 1) {
             char second = s.toLowerCase().charAt(1);
-                if(second >= '1' && second <= '9') {
-                    if(s.length() > 2) {
-                        char third = s.toLowerCase().charAt(2);
-                            if (third == '0') {
-                                return Integer.parseInt(s.substring(1, 3))-1;
+            if (second >= '1' && second <= '9') {
+                if (s.length() > 2) {
+                    char third = s.toLowerCase().charAt(2);
+                    if (third == '0') {
+                        return Integer.parseInt(s.substring(1, 3)) - 1;
                     }
-                }
-                else{
-                    return (second-'0'-1);
+                } else {
+                    return (second - '0' - 1);
                 }
             }
         }
@@ -157,29 +136,28 @@ public class Main {
         boolean shipDestroyed = false;
 
 
-            if (tab[ligne][colonne] == '#') {
-                // hit the ship
-                tab[ligne][colonne] = 'X';
-                System.out.println("touched ! well done !!!  hiiiiiii haaaaaaa");
-                shipDestroyed = true;
-            }
-            else if (tab[ligne][colonne] == '~') {
-                // hit the ship
-                tab[ligne][colonne] = 'Y';
-                System.out.println("holy sheet...");
-            }
-            else{
-                System.out.println("Already played here : noob ");
-            }
-
-            return shipDestroyed;
+        if (tab[ligne][colonne] == '#') {
+            // hit the ship
+            tab[ligne][colonne] = 'X';
+            System.out.println("touched ! well done !!!  hiiiiiii haaaaaaa");
+            shipDestroyed = true;
+        } else if (tab[ligne][colonne] == '~') {
+            // hit the ship
+            tab[ligne][colonne] = 'Y';
+            System.out.println("holy shit...");
+        } else {
+            System.out.println("Already played here : noob ");
+        }
+        return shipDestroyed;
     }
 
-    public static void playerTurn(char tab[][]){
+    public static void playerTurn(char tab[][]) {
 
         int colIdx;
         int rowIdx;
         do {
+
+
             Scanner sc = new Scanner(System.in);
             // Get input from user
             System.out.println("Entrez des coordonnées : ");
@@ -198,62 +176,78 @@ public class Main {
                 shoot(colIdx, rowIdx, tab);
 
             } else {
-                System.out.println("erreur de saisie");
+                System.out.println("Erreur de saisie");
             }
-        }while( colIdx==-1 || rowIdx == -1);
+        } while (colIdx == -1 || rowIdx == -1);
     }
-    //
-    
+    // condition of finality game
+
+    public static boolean finality_G(char tab[][]) {
+        int i;
+        int n = tab.length;
+
+        int m = tab[0].length;
+        boolean continue_Game = false;
+        for (i = 0; i < n; i = i + 1) {
+            int col;
+            for (col = 0; col < m; col = col + 1) {
+                if (tab[i][col] == '#') {
+                    return true;
+                }
+            }
+        }
+        System.out.println("YOU WIN !!!!!!!!!!!!!!!!!!!!!!!");
+        return false;
+    }
+        // hidden
+        //public static void Hidden_cpu()
 
 
+        // Cpu turn
 
-
-
-
-    // Tour de l'ordinateur
-
-    public static void CPU_Turn(char tab[][]){
+    public static void CPU_Turn ( char tab[][]){
 
         int Random_CPU_col = GetRandom(10);
-        int Random_CPU_row = GetRandom(10);
-        System.out.print("CPU : ");
-        shoot(Random_CPU_row,Random_CPU_col,tab);
 
+        int Random_CPU_row = GetRandom(10);
+
+        System.out.print("CPU : ");
+
+        shoot(Random_CPU_row, Random_CPU_col, tab);
     }
 
-    public static void main(String[] args) {
+    public static void main (String[]args){
 
-        System.out.println("welcome to my (bo(a)t");
-
-
+        System.out.println("Welcome to my (bo(a)t");
 
 
-
-       char tabPlayer[][]= new char [10][10];
-       char tabCpu[][]= new char [10][10];
+        char tabPlayer[][] = new char[10][10];
+        char tabCpu[][] = new char[10][10];
 
         FonctionInit(tabPlayer);
         FonctionInit(tabCpu);
 
-        while(true){
+        while (true) {
 
             System.out.println("----------------------------------------------");
 
+            finality_G(tabCpu);
             FonctionAffichageX(tabCpu);
 
             System.out.println("----------------------------------------------");
 
+            finality_G(tabPlayer);
             FonctionAffichageX(tabPlayer);
 
             System.out.println("----------------------------------------------");
             playerTurn(tabCpu);
 
             CPU_Turn(tabPlayer);
-
         }
-
     }
+
 }
+
 
 
         
