@@ -78,8 +78,7 @@ public class Main {
 
 // print the table
 
-    public static void FonctionAffichageX(char tableau[][]) {
-
+    public static void FonctionAffichageX(char tableau[][], boolean shipHidden) {
 
         int y;
         System.out.println("    A B C D E F G H I J");
@@ -93,7 +92,15 @@ public class Main {
             line = line + (y + 1) + "| ";
 
             for (x = 0; x <= 9; x = x + 1) {
-                line = line + tableau[y][x] + " ";
+
+                char myCell = tableau[y][x];
+                if( myCell == '#' && shipHidden == true){
+                    line = line + '~' + " ";
+                }
+                else{
+                    line = line + tableau[y][x] + " ";
+                }
+
             }
             line = line + "|";
             System.out.println(line);
@@ -180,8 +187,15 @@ public class Main {
             }
         } while (colIdx == -1 || rowIdx == -1);
     }
+
+
     // condition of finality game
 
+    /**
+     * this condition is use for finish the game if you have destroys all ship ennemies
+     * @param tab
+     * @return
+     */
     public static boolean finality_G(char tab[][]) {
         int i;
         int n = tab.length;
@@ -200,7 +214,9 @@ public class Main {
         return false;
     }
         // hidden
-        //public static void Hidden_cpu()
+        public static void Hidden_cpu(){
+
+        }
 
 
         // Cpu turn
@@ -216,10 +232,23 @@ public class Main {
         shoot(Random_CPU_row, Random_CPU_col, tab);
     }
 
+
+    static void percent(){
+
+        int maxVal = 10000000;
+        for(int i = 0;i<maxVal;i++){
+            System.out.print( (int)((100.0f * i) / maxVal) + "% \r" );
+            System.out.flush();
+        }
+
+    }
+
+
     public static void main (String[]args){
 
         System.out.println("Welcome to my (bo(a)t");
 
+    percent();
 
         char tabPlayer[][] = new char[10][10];
         char tabCpu[][] = new char[10][10];
@@ -232,12 +261,12 @@ public class Main {
             System.out.println("----------------------------------------------");
 
             finality_G(tabCpu);
-            FonctionAffichageX(tabCpu);
+            FonctionAffichageX(tabCpu, true);
 
             System.out.println("----------------------------------------------");
 
             finality_G(tabPlayer);
-            FonctionAffichageX(tabPlayer);
+            FonctionAffichageX(tabPlayer, false);
 
             System.out.println("----------------------------------------------");
             playerTurn(tabCpu);
